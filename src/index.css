@@ -1,0 +1,320 @@
+/* ==========================================================================
+   WEATHER APP SPINNER DESIGN
+   ========================================================================== */
+body {
+  background-color: #0b0b0f; /* AIZEN TV-യുടെ അതേ പ്രീമിയം ഡാർക്ക് ബാക്ക്ഗ്രൗണ്ട് */
+  color: #ffffff;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.weather-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 3rem 0;
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* കറങ്ങുന്ന പ്രീമിയം സ്പിന്നർ വളയം */
+.weather-spinner {
+  width: 42px;
+  height: 42px;
+  border: 3.5px solid rgba(255, 255, 255, 0.05);
+  border-top-color: #3b82f6; /* വെതർ ആപ്പിന് ചേരുന്ന ബ്ലൂ ആക്സന്റ് കളർ */
+  border-radius: 50%;
+  animation: spinWeather 0.85s linear infinite;
+}
+
+.weather-loading-container h2 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+/* ആനിമേഷൻ കീഫ്രെയിം */
+@keyframes spinWeather {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   WEATHER SEARCH BAR PREMIUM DESIGN
+   ========================================================================== */
+.weather-search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.weather-search-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ബട്ടൺ വലത്തേ അറ്റത്ത് കൃത്യമായി ഇരിക്കാൻ */
+  background-color: #13131a;     /* കാർഡിന്റെ അതേ ഡാർക്ക് കളർ */
+  padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 550px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+.weather-search-field input[type='text'] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  padding-right: 1rem;
+}
+
+/* ഇൻപുട്ടിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ വരാൻ ഒരു സോഫ്റ്റ് ഗ്ലോ */
+.weather-search-field:focus-within {
+  border-color: rgba(59, 130, 246, 0.4); /* Weather Blue Glow */
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1);
+}
+
+.search-icon-marker {
+  font-size: 1.1rem;
+  opacity: 0.7;
+}
+
+.weather-search-field input[type='text'] {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  padding: 0.5rem 0.5rem 0.5rem 0;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+
+.weather-search-field input[type='text']::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* ബ്ലൂ വെതർ സെർച്ച് ബട്ടൺ */
+.weather-search-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.weather-search-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.weather-search-btn:disabled {
+  background: #374151;
+  color: var(--text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* മൊബൈൽ സ്ക്രീനുകളിൽ ബട്ടൺ ഒതുങ്ങി വരാൻ */
+@media (max-width: 480px) {
+  .weather-search-field {
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+  }
+  .weather-search-btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================================================
+   🌤️ WEATHER CARD PREMIUM DESIGN (WeatherCard.jsx)
+   ========================================================================== */
+.weather-card-main {
+  background: linear-gradient(135deg, var(--card-bg) 0%, #1e1e26 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  max-width: 550px;
+  margin: 1.5rem auto 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* കാർഡിന് മുകളിൽ ചെറിയൊരു വെതർ ബ്ലൂ പ്രീമിയം ലൈൻ ഗ്ലോ */
+.weather-card-main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+}
+
+/* സിറ്റി നെയിം സ്റ്റൈൽ */
+.weather-card-main h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* വെതർ ഐക്കൺ ആനിമേഷൻ */
+.weather-icon {
+  width: 100px;
+  height: 100px;
+  margin: -0.5rem 0;
+  filter: drop-shadow(0 8px 12px rgba(59, 130, 246, 0.3));
+  animation: floatIcon 3s ease-in-out infinite; /* ഐക്കൺ വെറുതെ ഇരിക്കാതെ ലൈറ്റ് ആയി ഫ്ലോട്ട് ചെയ്യാൻ */
+}
+
+/* മെയിൻ വലിയ ടെമ്പറേച്ചർ ഡിസ്പ്ലേ */
+.weather-temp {
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0.5rem 0;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+/* വെതർ കണ്ടീഷൻ ടെക്സ്റ്റ് (eg: scattered clouds) */
+.weather-desc {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   📊 4-BOX DETAILS GRID SYSTEM
+   ========================================================================== */
+.weather-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* കൃത്യമായി 2x2 ബോക്സുകൾ വരാൻ */
+  gap: 1.25rem;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 2rem;
+}
+
+.weather-detail-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+/* ബോക്സുകളുടെ മുകളിലൂടെ മൗസ് കൊണ്ടുപോകുമ്പോൾ ചെറിയൊരു ഗ്ലോ */
+.weather-detail-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(59, 130, 246, 0.15);
+  transform: translateY(-2px);
+}
+
+.weather-detail-item span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.weather-detail-item strong {
+  font-size: 1.25rem;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   ANIMATIONS & RESPONSIVE DESIGN
+   ========================================================================== */
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ഫോണുകളിൽ കാണുമ്പോൾ ലേഔട്ട് അഡ്ജസ്റ്റ് ആകാൻ */
+@media (max-width: 520px) {
+  .weather-card-main {
+    padding: 1.75rem;
+    margin: 1rem;
+  }
+  .weather-temp {
+    font-size: 3.5rem;
+  }
+  .weather-card-main h2 {
+    font-size: 1.8rem;
+  }
+  .weather-details-grid {
+    grid-template-columns: 1fr; /* മൊബൈലിൽ 4 ബോക്സുകളും താഴെ താഴെയായി വരും */
+    gap: 1rem;
+    padding-top: 1.5rem;
+  }
+  .weather-detail-item {
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between; /* മൊബൈലിൽ ലെഫ്റ്റും റൈറ്റുമായി ഡാറ്റ കാണിക്കും */
+  }
+}
+
+/* ==========================================================================
+   WEATHER PAGE LAYOUT MAIN
+   ========================================================================== */
+.weather-layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.page-header h1 {
+  color: #ffffff !important;
+  font-weight: 800;
+  margin: 0;
+}
+
+.page-header p {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+
+
+
+/* ആനിമേഷൻ സ്മൂത്ത് ആകാൻ */
+.weather-layout-wrapper > * {
+  animation: fadeInEffect 0.4s ease-in-out;
+}
+
+@keyframes fadeInEffect {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
