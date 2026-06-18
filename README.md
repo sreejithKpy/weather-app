@@ -1,16 +1,47 @@
-# React + Vite
+# Weather App 🌦️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern weather application built with React and OpenWeather API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Search weather by city name
+* Real-time weather information
+* Temperature in Celsius
+* Humidity display
+* Wind speed display
+* Weather condition icons
+* Loading state handling
+* Error handling for invalid cities
+* Responsive UI
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* React
+* Vite
+* OpenWeather API
+* CSS
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/sreejithKpy/weather-app.git
+cd weather-app
+npm install
+npm run dev
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+VITE_WEATHER_API_KEY=your_api_key_here
+```
+
+## Live Demo
+
+https://vortexweather.netlify.app/
+
+## Author
+
+Sreejith
